@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SeekYu Client Dashboard</title>
+  <link rel="stylesheet" href="styles/client.css" />
+  <script src="scripts/seekyu.js" defer></script>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">SeekYu</div>
+      <nav>
+        <ul>
+          <li><button onclick="App.showSection('dashboard')" class="active">Dashboard</button></li>
+          <li><button onclick="App.showSection('incident-report')">Incident Report</button></li>
+          <li><button onclick="App.showSection('leave-request')">Leave Request</button></li>
+          <li><button onclick="App.showSection('deployment-request')">Deployment Request</button></li>
+          <li><a href="index.html"><button>Logout</button></a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Dashboard -->
+      <div id="dashboard" class="section active">
+        <h1>Welcome to Client Dashboard</h1>
+        <p>Overview and client-specific activities.</p>
+      </div>
+
+      <!-- Incident Report -->
+      <div id="incident-report" class="section">
+        <h1>Incident Reports</h1>
+  <p>Search and review reported incidents related to your sites.</p>
+
+  <!-- Search -->
+  <input type="text" id="incidentSearch" placeholder="Search incident..." class="search-box" />
+
+  <!-- Table -->
+  <table class="incident-table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Incident</th>
+        <th>Location</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>August 3, 2025</td>
+        <td>Unauthorized Entry</td>
+        <td>Site A - Graceville</td>
+        <td><button class="view-btn" data-incident="Unauthorized Entry" data-date="August 3, 2025" data-location="Site A - Graceville" data-details="A person tried to enter without clearance. Guard intervened.">View</button></td>
+      </tr>
+      <tr>
+        <td>July 30, 2025</td>
+        <td>CCTV Tampering</td>
+        <td>Site B - Towerville</td>
+        <td><button class="view-btn" data-incident="CCTV Tampering" data-date="July 30, 2025" data-location="Site B - Towerville" data-details="Equipment found unplugged. Technician assigned.">View</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Popup Modal -->
+<div id="incidentModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <h2 id="modalIncident"></h2>
+    <p><strong>Date:</strong> <span id="modalDate"></span></p>
+    <p><strong>Location:</strong> <span id="modalLocation"></span></p>
+    <p><strong>Details:</strong> <span id="modalDetails"></span></p>
+  </div>
+</div>
+
+      <!-- Leave Request -->
+<div id="leave-request" class="section">
+  <h1>Leave Requests</h1>
+  <p>Records of leave requests submitted by guards.</p>
+
+  <table class="leave-table">
+    <thead>
+      <tr>
+        <th>Date Submitted</th>
+        <th>Leave Type</th>
+        <th>Employee Name</th>
+        <th>Employee ID</th>
+        <th>Contact No.</th>
+        <th>Email</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Decision</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>August 5, 2025</td>
+        <td>Emergency Leave</td>
+        <td>John Delacruz</td>
+        <td>EMP-1023</td>
+        <td>0917-123-4567</td>
+        <td>jdelacruz@email.com</td>
+        <td>Aug 6, 2025</td>
+        <td>Aug 7, 2025</td>
+        <td>
+          <button class="accept">Accept</button>
+          <button class="reject">Reject</button>
+        </td>
+      </tr>
+      <tr>
+        <td>August 8, 2025</td>
+        <td>Sick Leave</td>
+        <td>Maria Santos</td>
+        <td>EMP-1045</td>
+        <td>0928-987-6543</td>
+        <td>msantos@email.com</td>
+        <td>Aug 9, 2025</td>
+        <td>Aug 11, 2025</td>
+        <td>
+          <button class="accept">Accept</button>
+          <button class="reject">Reject</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+      <!-- Deployment Request -->
+      <div id="deployment-request" class="section">
+        <h1>Deployment Request</h1>
+        <p>Submit a new guard deployment request.</p>
+        <form>
+          <input type="text" placeholder="Deployment Location" required />
+          <input type="number" placeholder="Number of Guards" required />
+          <textarea placeholder="Additional Notes (Optional)"></textarea>
+          <button type="submit">Send Request</button>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Highlight active sidebar button
+    document.querySelectorAll('.sidebar button').forEach(button => {
+      button.addEventListener('click', function () {
+        document.querySelectorAll('.sidebar button').forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SeekYu Admin Dashboard</title>
+  <link rel="stylesheet" href="styles/admin.css" />
+  <script src="scripts/seekyu.js" defer></script>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">SeekYu</div>
+      <nav>
+        <ul>
+          <li><button onclick="App.showSection('dashboard')" class="active">Dashboard</button></li>
+          <li><button onclick="App.showSection('recruiting-mgmt')">Recruitment Management</button></li>
+          <li><button onclick="App.showSection('accounts')">Account Management</button></li>
+          <li><button onclick="App.showSection('client-mgmt')">Client Management</button></li>
+          <li><button onclick="App.showSection('guard-mgmt')">Security Guard Management</button></li>
+          <li><button onclick="App.showSection('kpi')">KPI Evaluation</button></li>
+          <li><button onclick="App.showSection('leave-requests')">Leave Requests</button></li>
+          <li><button onclick="App.showSection('incident-reports')">Incident Reports</button></li>
+          <li><button onclick="location.href='index.html'">Logout</button></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Dashboard -->
+      <div id="dashboard" class="section active">
+        <h1>Admin Dashboard</h1>
+        <p>Welcome back! Use the sidebar to manage the system.</p>
+      </div>
+<!-- Recruitment Management -->
+<div id="recruiting-mgmt" class="section">
+  <h1>Online Recruitment Management</h1>
+  <p>Manage applications submitted by job seekers.</p>
+
+  <!-- Search -->
+  <input type="text" id="recruitSearch" placeholder="Search applicants...">
+
+  <!-- Applicants Table -->
+  <table id="recruitTable">
+    <thead>
+      <tr>
+        <th>Applicant Name</th>
+        <th>Applicant ID</th>
+        <th>Position Applied</th>
+        <th>Contact No.</th>
+        <th>Email</th>
+        <th>Resume</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Carlos Dela Cruz</td>
+        <td>AP-001</td>
+        <td>Security Guard</td>
+        <td>09179998888</td>
+        <td>carlos.cruz@email.com</td>
+        <td><a href="resumes/carlos.pdf" target="_blank">View</a></td>
+        <td>Pending</td>
+        <td>
+          <button class="accept-btn">Accept</button>
+          <button class="reject-btn">Reject</button>
+        </td>
+      </tr>
+      <tr>
+        <td>Josefina Ramos</td>
+        <td>AP-002</td>
+        <td>Client</td>
+        <td>09172223333</td>
+        <td>josefina.ramos@email.com</td>
+        <td><a href="resumes/josefina.pdf" target="_blank">View</a></td>
+        <td>Pending</td>
+        <td>
+          <button class="accept-btn">Accept</button>
+          <button class="reject-btn">Reject</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+      <!-- KPI -->
+      <div id="kpi" class="section">
+        <h1>KPI Evaluation</h1>
+  <p>Evaluate performance metrics of your guards.</p>
+
+  <!-- KPI Summary Cards -->
+  <div class="kpi-summary">
+    <div class="kpi-card">
+      <h2>Average Attendance</h2>
+      <p>92%</p>
+    </div>
+    <div class="kpi-card">
+      <h2>Average Punctuality</h2>
+      <p>88%</p>
+    </div>
+    <div class="kpi-card">
+      <h2>Overall Performance</h2>
+      <p>4.3 / 5</p>
+    </div>
+    <div class="kpi-card">
+      <h2>Training Completion</h2>
+      <p>95%</p>
+    </div>
+  </div>
+
+  <!-- KPI Ratings Table -->
+  <h2>General KPI Ratings Overview</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Excellent</th>
+        <th>Good</th>
+        <th>Average</th>
+        <th>Poor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Attendance</td>
+        <td>65%</td>
+        <td>20%</td>
+        <td>10%</td>
+        <td>5%</td>
+      </tr>
+      <tr>
+        <td>Punctuality</td>
+        <td>58%</td>
+        <td>25%</td>
+        <td>12%</td>
+        <td>5%</td>
+      </tr>
+      <tr>
+        <td>Performance</td>
+        <td>70%</td>
+        <td>18%</td>
+        <td>8%</td>
+        <td>4%</td>
+      </tr>
+      <tr>
+        <td>Training & Skills</td>
+        <td>80%</td>
+        <td>15%</td>
+        <td>4%</td>
+        <td>1%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Chart Placeholder -->
+  <div class="kpi-chart">
+    <p>[Chart Visualization Placeholder — can be replaced with actual chart.js / Recharts later]</p>
+  </div>
+</div>
+
+      <!-- Account Management -->
+      <div id="accounts" class="section">
+        <h1>Account Management</h1>
+        
+        <!-- Action Buttons -->
+        <div class="account-actions">
+          <button onclick="App.showSubSection('view-accounts')">View Accounts</button>
+          <button onclick="App.showSubSection('create-account')">Create Account</button>
+        </div>
+
+        <!-- View Accounts -->
+        <div id="view-accounts" class="sub-section active">
+          <h2>Accounts List</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Account ID</th>
+                <th>Role</th>
+                <th>Date Created</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="accountTableBody">
+              <tr>
+                <td>Juan Dela Cruz</td>
+                <td>AC-001</td>
+                <td>Client</td>
+                <td>2025-08-14</td>
+                <td><button class="delete-btn">Delete</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Create Account -->
+        <div id="create-account" class="sub-section">
+          <h2>Create New Account</h2>
+
+          <!-- Client Account Form -->
+          <div class="form-block">
+            <h3>Create Client Account</h3>
+            <form method="POST" action="backend/create_account.php">
+              <input type="hidden" name="role" value="Client">
+              <label>Name:</label>
+              <input type="text" name="name" required>
+              <label>Email:</label>
+              <input type="email" name="email" required>
+              <label>Username:</label>
+              <input type="text" name="username" required>
+              <label>Password:</label>
+              <input type="password" name="password" required>
+              <button type="submit">Create Client</button>
+            </form>
+          </div>
+
+          <!-- Security Guard Account Form -->
+          <div class="form-block">
+            <h3>Create Security Guard Account</h3>
+            <form method="POST" action="backend/create_account.php">
+              <input type="hidden" name="role" value="Security Guard">
+              <label>Name:</label>
+              <input type="text" name="name" required>
+              <label>Email:</label>
+              <input type="email" name="email" required>
+              <label>Username:</label>
+              <input type="text" name="username" required>
+              <label>Password:</label>
+              <input type="password" name="password" required>
+              <button type="submit">Create Guard</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Client Management -->
+      <div id="client-mgmt" class="section">
+        <h1>Client Management</h1>
+        <p>View and manage client information and job postings.</p>
+      </div>
+
+      <!-- Security Guard Management -->
+      <div id="guard-mgmt" class="section">
+        <h1>Security Guard Management</h1>
+        <p>Manage security guard records and assignments.</p>
+      </div>
+
+      <!-- Leave Requests -->
+      <div id="leave-requests" class="section">
+        <h1>Leave Requests</h1>
+  <p>Review and approve leave applications.</p>
+
+  <!-- Search bar -->
+  <input type="text" id="leaveSearch" placeholder="Search leave requests...">
+
+  <!-- Leave Requests Table -->
+  <table id="leaveTable">
+    <thead>
+      <tr>
+        <th>Leave Type</th>
+        <th>Employee Name</th>
+        <th>Employee ID</th>
+        <th>Position</th>
+        <th>Contact No.</th>
+        <th>Email</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Sick Leave</td>
+        <td>Maria Santos</td>
+        <td>SG-001</td>
+        <td>Security Guard</td>
+        <td>09171234567</td>
+        <td>maria.santos@email.com</td>
+        <td>Accepted</td>
+      </tr>
+      <tr>
+        <td>Vacation Leave</td>
+        <td>Pedro Cruz</td>
+        <td>SG-002</td>
+        <td>Security Guard</td>
+        <td>09187654321</td>
+        <td>pedro.cruz@email.com</td>
+        <td>Rejected</td>
+      </tr>
+      <tr>
+        <td>Emergency Leave</td>
+        <td>Ana Reyes</td>
+        <td>SG-003</td>
+        <td>Supervisor</td>
+        <td>09171112222</td>
+        <td>ana.reyes@email.com</td>
+        <td>Accepted</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+      <!-- Incident Reports -->
+      <div id="incident-reports" class="section">
+        <h1>Incident Reports</h1>
+        <p>Monitor and review reported incidents.</p>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Sidebar button active toggle
+    document.querySelectorAll('.sidebar button').forEach(button => {
+      button.addEventListener('click', function () {
+        document.querySelectorAll('.sidebar button').forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
